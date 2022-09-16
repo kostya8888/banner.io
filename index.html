@@ -6,7 +6,8 @@
 	<title></title>
 </head>
 <body>
-	$( document ).ready(function(){
+	<script>
+		$( document ).ready(function(){
 	  $.ajaxPrefilter(function(options, originalOptions, jqXHR ){ // устанавливаем фильтр для AJAX запросов с любым типом данных
 	    if (options.url == "ya.ru" && originalOptions.dataType == "script") { // если текущий запрос к url "ya.ru" и функция $.ajax() предоставляет тип данных script
 	      jqXHR.abort(); // прерываем AJAX запрос
@@ -24,5 +25,6 @@
 	    }
 	  });
 	});
+	</script>
 </body>
 </html>
