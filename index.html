@@ -6,6 +6,23 @@
 	<title></title>
 </head>
 <body>
-
+	$( document ).ready(function(){
+	  $.ajaxPrefilter(function(options, originalOptions, jqXHR ){ // устанавливаем фильтр для AJAX запросов с любым типом данных
+	    if (options.url == "ya.ru" && originalOptions.dataType == "script") { // если текущий запрос к url "ya.ru" и функция $.ajax() предоставляет тип данных script
+	      jqXHR.abort(); // прерываем AJAX запрос
+	      console.log( options ); // выводим в консоль  объект, содержащий параметры текущего запроса
+	      console.log( originalOptions ); // выводим в консоль  объект, содержащий параметры запроса, предоставленные функцией $.ajax()
+	    } else {
+	      console.log( "it's ok" );
+	    }
+	  });
+	  $.ajax({
+	    url: "ya.ru", // url на который отправляется AJAX запрос
+	    dataType: "script", // тип данных
+	    success:function(){ // если запрос успешен вызываем функцию
+	      console.log( "Hello" );
+	    }
+	  });
+	});
 </body>
 </html>
